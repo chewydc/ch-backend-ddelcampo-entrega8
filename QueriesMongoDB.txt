@@ -1,0 +1,305 @@
+# ENTREGA 8 CRUD MONGO
+
+//-------------------------------------------------------------
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+mibase  0.000GB
+
+//-------------------------------------------------------------
+1) CREO DB ECOMMERCE
+> use ecommerce
+switched to db ecommerce
+
+//-------------------------------------------------------------
+2) INSERTO 10 DOCUMENTOS A PRODUCTOS Y MENSAJES
+
+> db.productos.insertMany([{
+...     "title": "Calculadora",
+...     "price": 1510,
+...     "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-512.png",
+...     "id": 1
+...   },
+...   {
+...     "title": "Mochila",
+...     "price": 3200,
+...     "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/bag-pack-container-school-512.png",
+...     "id": 2
+...   },
+...   {
+...     "title": "Regla",
+...     "price": 100,
+...     "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-512.png",
+...     "id": 3
+...   },
+...   {
+...     "title": "Avion de papel",
+...     "price": 110,
+...     "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/plane-paper-toy-science-school-512.png",
+...     "id": 4
+...   },
+...   {
+...     "title": "Pizarron",
+...     "price": 2800,
+...     "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/board-math-class-school-128.png",
+...     "id": 5
+...   },
+...   {
+...     "title": "Lapiz",
+...     "price": 120,
+...     "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/pencil-pen-stationery-school-128.png",
+...     "id": 6
+...   },
+...   {
+...     "title": "Reloj",
+...     "price": 1620,
+...     "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/clock-stopwatch-timer-time-128.png",
+...     "id": 7
+...   },
+...   {
+...     "title": "Bloc de Notas",
+...     "price": 280,
+...     "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/paper-clip-academic-note-exam-128.png",
+...     "id": 8
+...   },
+...   {
+...     "title": "Acuarelas",
+...     "price": 570,
+...     "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/paint-color-pallete-brush-academy-128.png",
+...     "id": 9
+...   },
+...   {
+...     "title": "Bus Escolar",
+...     "price": 5000,
+...     "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/bus-vehicle-transport-school-128.png",
+...     "id": 10
+...   }
+... ])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("618952acf9877e7074ab4fd0"),
+                ObjectId("618952acf9877e7074ab4fd1"),
+                ObjectId("618952acf9877e7074ab4fd2"),
+                ObjectId("618952acf9877e7074ab4fd3"),
+                ObjectId("618952acf9877e7074ab4fd4"),
+                ObjectId("618952acf9877e7074ab4fd5"),
+                ObjectId("618952acf9877e7074ab4fd6"),
+                ObjectId("618952acf9877e7074ab4fd7"),
+                ObjectId("618952acf9877e7074ab4fd8"),
+                ObjectId("618952acf9877e7074ab4fd9")
+        ]
+}
+
+> db.mensajes.insertMany(
+... [
+...   {
+...     "mail": "marian@gl.com",
+...     "mensaje": "hola a todos",
+...     "fyh": "25/10/2021 10:19:13"
+...   },
+...   {
+...     "mail": "ddelcampo@teco.com.ar",
+...     "mensaje": "hola",
+...     "fyh": "25/10/2021 10:38:39"
+...   },
+...   {
+...     "mail": "mariano@coder.com",
+...     "mensaje": "todo bien?",
+...     "fyh": "25/10/2021 10:40:59"
+...   },
+...   {
+...     "mail": "damian@josm.com",
+...     "mensaje": "Hola Jose",
+...     "fyh": "25/10/2021 10:52:30"
+...   },
+...   {
+...     "mail": "jose@jdl.ps",
+...     "mensaje": "Hola Damian",
+...     "fyh": "25/10/2021 10:52:47"
+...   },
+...   {
+...     "mail": "marian@gl.com",
+...     "mensaje": "vieron el precio del reloj?",
+...     "fyh": "8/11/2021 13:53:19"
+...   },
+...   {
+...     "mail": "mariano@coder.com",
+...     "mensaje": "Muy buena rebaja",
+...     "fyh": "8/11/2021 13:53:32"
+...   },
+...   {
+...     "mail": "damian@josm.com",
+...     "mensaje": "me compre dos",
+...     "fyh": "8/11/2021 13:53:47"
+...   },
+...   {
+...     "mail": "damian@josm.com",
+...     "mensaje": "estaban a buen precio",
+...     "fyh": "8/11/2021 13:54:08"
+...   },
+...   {
+...     "mail": "ddelcampo@teco.com.ar",
+...     "mensaje": "si yo tambien",
+...     "fyh": "8/11/2021 13:54:27"
+...   }
+... ])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("618957cdf9877e7074ab4fed"),
+                ObjectId("618957cdf9877e7074ab4fee"),
+                ObjectId("618957cdf9877e7074ab4fef"),
+                ObjectId("618957cdf9877e7074ab4ff0"),
+                ObjectId("618957cdf9877e7074ab4ff1"),
+                ObjectId("618957cdf9877e7074ab4ff2"),
+                ObjectId("618957cdf9877e7074ab4ff3"),
+                ObjectId("618957cdf9877e7074ab4ff4"),
+                ObjectId("618957cdf9877e7074ab4ff5"),
+                ObjectId("618957cdf9877e7074ab4ff6")
+        ]
+}
+
+//-------------------------------------------------------------
+3) LISTO LOS DOCUMENTOS
+
+> db.productos.find()
+{ "_id" : ObjectId("61895765f9877e7074ab4fe3"), "title" : "Calculadora", "price" : 1500, "thumbnail" : "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-512.png", "id" : 1 }
+{ "_id" : ObjectId("61895765f9877e7074ab4fe4"), "title" : "Mochila", "price" : 3200, "thumbnail" : "https://cdn3.iconfinder.com/data/icons/education-209/64/bag-pack-container-school-512.png", "id" : 2 }
+{ "_id" : ObjectId("61895765f9877e7074ab4fe5"), "title" : "Regla", "price" : 100, "thumbnail" : "https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-512.png", "id" : 3 }
+{ "_id" : ObjectId("61895765f9877e7074ab4fe6"), "title" : "Avion de papel", "price" : 110, "thumbnail" : "https://cdn3.iconfinder.com/data/icons/education-209/64/plane-paper-toy-science-school-512.png", "id" : 4 }
+{ "_id" : ObjectId("61895765f9877e7074ab4fe7"), "title" : "Pizarron", "price" : 2800, "thumbnail" : "https://cdn3.iconfinder.com/data/icons/education-209/64/board-math-class-school-128.png", "id" : 5 }
+{ "_id" : ObjectId("61895765f9877e7074ab4fe8"), "title" : "Lapiz", "price" : 120, "thumbnail" : "https://cdn3.iconfinder.com/data/icons/education-209/64/pencil-pen-stationery-school-128.png", "id" : 6 }
+{ "_id" : ObjectId("61895765f9877e7074ab4fe9"), "title" : "Reloj", "price" : 1620, "thumbnail" : "https://cdn3.iconfinder.com/data/icons/education-209/64/clock-stopwatch-timer-time-128.png", "id" : 7 }
+{ "_id" : ObjectId("61895765f9877e7074ab4fea"), "title" : "Bloc de Notas", "price" : 280, "thumbnail" : "https://cdn3.iconfinder.com/data/icons/education-209/64/paper-clip-academic-note-exam-128.png", "id" : 8 }
+{ "_id" : ObjectId("61895765f9877e7074ab4feb"), "title" : "Acuarelas", "price" : 570, "thumbnail" : "https://cdn3.iconfinder.com/data/icons/education-209/64/paint-color-pallete-brush-academy-128.png", "id" : 9 }
+{ "_id" : ObjectId("61895765f9877e7074ab4fec"), "title" : "Bus Escolar", "price" : 5000, "thumbnail" : "https://cdn3.iconfinder.com/data/icons/education-209/64/bus-vehicle-transport-school-128.png", "id" : 10 }
+
+> db.mensajes.find()
+{ "_id" : ObjectId("618957cdf9877e7074ab4fed"), "mail" : "marian@gl.com", "mensaje" : "hola a todos", "fyh" : "25/10/2021 10:19:13" }
+{ "_id" : ObjectId("618957cdf9877e7074ab4fee"), "mail" : "ddelcampo@teco.com.ar", "mensaje" : "hola", "fyh" : "25/10/2021 10:38:39" }
+{ "_id" : ObjectId("618957cdf9877e7074ab4fef"), "mail" : "mariano@coder.com", "mensaje" : "todo bien?", "fyh" : "25/10/2021 10:40:59" }
+{ "_id" : ObjectId("618957cdf9877e7074ab4ff0"), "mail" : "damian@josm.com", "mensaje" : "Hola Jose", "fyh" : "25/10/2021 10:52:30" }
+{ "_id" : ObjectId("618957cdf9877e7074ab4ff1"), "mail" : "jose@jdl.ps", "mensaje" : "Hola Damian", "fyh" : "25/10/2021 10:52:47" }
+{ "_id" : ObjectId("618957cdf9877e7074ab4ff2"), "mail" : "marian@gl.com", "mensaje" : "vieron el precio del reloj?", "fyh" : "8/11/2021 13:53:19" }
+{ "_id" : ObjectId("618957cdf9877e7074ab4ff3"), "mail" : "mariano@coder.com", "mensaje" : "Muy buena rebaja", "fyh" : "8/11/2021 13:53:32" }
+{ "_id" : ObjectId("618957cdf9877e7074ab4ff4"), "mail" : "damian@josm.com", "mensaje" : "me compre dos", "fyh" : "8/11/2021 13:53:47" }
+{ "_id" : ObjectId("618957cdf9877e7074ab4ff5"), "mail" : "damian@josm.com", "mensaje" : "estaban a buen precio", "fyh" : "8/11/2021 13:54:08" }
+{ "_id" : ObjectId("618957cdf9877e7074ab4ff6"), "mail" : "ddelcampo@teco.com.ar", "mensaje" : "si yo tambien", "fyh" : "8/11/2021 13:54:27" }
+
+
+//-------------------------------------------------------------
+4) CANTIDAD DE DOCUMENTOS POR COLLECTION
+
+> db.mensajes.find().count()
+10
+> db.productos.find().count()
+10
+
+//-------------------------------------------------------------
+5) CRUD SOBRE PORDUCTOS
+	A) AGREGO UN NUEVO PRODUCTO
+		
+> db.productos.insert({
+...     "title": "Calculadora Cientifica",
+...     "price": 1600,
+...     "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-512.png",
+...     "id": 11
+...   })
+WriteResult({ "nInserted" : 1 })
+	
+	B) QUERYS ESPECIFICOS
+		i) Listar los productos con precio menor a 1000 pesos
+> db.productos.find({price: {$lt: 1000}})
+{ "_id" : ObjectId("618959e7f9877e7074ab4ffa"), "title" : "Regla", "price" : 100, "thumbnail" : "https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-512.png", "id" : 3 }
+{ "_id" : ObjectId("618959e7f9877e7074ab4ffb"), "title" : "Avion de papel", "price" : 110, "thumbnail" : "https://cdn3.iconfinder.com/data/icons/education-209/64/plane-paper-toy-science-school-512.png", "id" : 4 }
+{ "_id" : ObjectId("618959e7f9877e7074ab4ffd"), "title" : "Lapiz", "price" : 120, "thumbnail" : "https://cdn3.iconfinder.com/data/icons/education-209/64/pencil-pen-stationery-school-128.png", "id" : 6 }
+{ "_id" : ObjectId("618959e7f9877e7074ab4fff"), "title" : "Bloc de Notas", "price" : 280, "thumbnail" : "https://cdn3.iconfinder.com/data/icons/education-209/64/paper-clip-academic-note-exam-128.png", "id" : 8 }
+{ "_id" : ObjectId("618959e7f9877e7074ab5000"), "title" : "Acuarelas", "price" : 570, "thumbnail" : "https://cdn3.iconfinder.com/data/icons/education-209/64/paint-color-pallete-brush-academy-128.png", "id" : 9 }
+
+		ii) Listar los productos con precio entre los 1000 a 3000 pesos.
+		
+> db.productos.find({price: {$gt: 1000,$lt: 3000}})
+{ "_id" : ObjectId("618959e7f9877e7074ab4ff8"), "title" : "Calculadora", "price" : 1510, "thumbnail" : "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-512.png", "id" : 1 }
+{ "_id" : ObjectId("618959e7f9877e7074ab4ffc"), "title" : "Pizarron", "price" : 2800, "thumbnail" : "https://cdn3.iconfinder.com/data/icons/education-209/64/board-math-class-school-128.png", "id" : 5 }
+{ "_id" : ObjectId("618959e7f9877e7074ab4ffe"), "title" : "Reloj", "price" : 1620, "thumbnail" : "https://cdn3.iconfinder.com/data/icons/education-209/64/clock-stopwatch-timer-time-128.png", "id" : 7 }
+{ "_id" : ObjectId("618959f8f9877e7074ab5002"), "title" : "Calculadora Cientifica", "price" : 1600, "thumbnail" : "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-512.png", "id" : 11 }
+		
+		iii) Listar los productos con precio mayor a 3000 pesos.
+
+> db.productos.find({price: {$gt: 3000}})
+{ "_id" : ObjectId("618959e7f9877e7074ab4ff9"), "title" : "Mochila", "price" : 3200, "thumbnail" : "https://cdn3.iconfinder.com/data/icons/education-209/64/bag-pack-container-school-512.png", "id" : 2 }
+{ "_id" : ObjectId("618959e7f9877e7074ab5001"), "title" : "Bus Escolar", "price" : 5000, "thumbnail" : "https://cdn3.iconfinder.com/data/icons/education-209/64/bus-vehicle-transport-school-128.png", "id" : 10 }
+
+		iv) Realizar una consulta que traiga sólo el nombre del tercer producto más barato.
+
+> db.productos.find({},{_id:0,title:1}).sort({price:1}).limit(1).skip(2)
+{ "title" : "Lapiz" }
+
+	C) AGREGO CAMPO STOCK A TODOS LOS PRODUCTOS
+
+> db.productos.update({},{$set: {"stock":100}},false,true)
+WriteResult({ "nMatched" : 11, "nUpserted" : 0, "nModified" : 11 })
+
+o tambien: 
+
+> db.productos.updateMany({},{$set: {"stock":100}})
+{ "acknowledged" : true, "matchedCount" : 11, "modifiedCount" : 11 }
+
+
+	D) CAMBIO STOCK A PROD > A 4000$
+	
+> db.productos.updateMany({price: {$gt: 4000}},{$set: {"stock":0}})
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+	
+	E) BORRO PROD < 1000$
+
+> db.productos.deleteMany({price: {$lt: 1000}})
+{ "acknowledged" : true, "deletedCount" : 5 }
+		
+//-------------------------------------------------------------
+6) CREACION DE USUARIO PEPE PARA SOLO LECTURA. VERIFICACION
+
+> db.createUser(
+...   {
+...     user: "pepe",
+...     pwd: "asd456",
+...     roles: [
+...        { role: "read", db: "ecommerce" }
+...     ]
+...   }
+... )
+Successfully added user: {
+        "user" : "pepe",
+        "roles" : [
+                {
+                        "role" : "read",
+                        "db" : "ecommerce"
+                }
+        ]
+}
+
+//VERIFICACION (TUVE QUE VOLVER A EJECUTAR EL SERVER EN MODO --auth, ME HABIA PERMITIDO INSERTAR UN ELEMENTO!
+
+C:\Users\ddelcampo>mongo ecommerce -u pepe -p asd456
+MongoDB shell version v5.0.3
+connecting to: mongodb://127.0.0.1:27017/ecommerce?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("1379678c-7b21-48b6-b047-18ed1bfc1556") }
+MongoDB server version: 5.0.3
+================
+Warning: the "mongo" shell has been superseded by "mongosh",
+which delivers improved usability and compatibility.The "mongo" shell has been deprecated and will be removed in
+an upcoming release.
+We recommend you begin using "mongosh".
+For installation instructions, see
+https://docs.mongodb.com/mongodb-shell/install/
+================
+> db.productos.insert({title: "producto TEST"})
+WriteCommandError({
+        "ok" : 0,
+        "errmsg" : "not authorized on ecommerce to execute command { insert: \"productos\", ordered: true, lsid: { id: UUID(\"1379678c-7b21-48b6-b047-18ed1bfc1556\") }, $db: \"ecommerce\" }",
+        "code" : 13,
+        "codeName" : "Unauthorized"
+})
+>
